@@ -1,13 +1,25 @@
-let ul = document.querySelector("ul");
+let form = document.querySelector("form");
+let inp = document.querySelectorAll("input");
 
-ul.addEventListener("click",(x) =>{
-    x.target.classList.toggle("line");
-});
+form.addEventListener("submit" , function(x){
+    x.preventDefault();
 
-let c = document.querySelector("#circle");
-c.addEventListener("mouseover" , function(){
-    c.style.backgroundColor = "black";
-});
-c.addEventListener("mouseout" , function(){
-    c.style.backgroundColor = "red";
-});
+    inp.forEach(val => {
+        if(val.type == "email"){
+            let regex = "^[a-zA-Z0-9._%+-]+@gmail\.com$";
+            let ans = val.value.match(regex);
+            if(!ans){
+                document.querySelector("#email_alert").style.display="initial";
+            }
+            else{
+                document.querySelector("#email_alert").style.display="none";
+                console.log(val.value);
+            }
+        }
+        else if(val.type != "submit"){
+            console.log(val.value);
+        }
+    });
+
+    console.log(document.querySelector("select").value);
+})

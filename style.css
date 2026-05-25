@@ -20,7 +20,7 @@ body{
 #sign-in{
     height: auto;
     width: 300px;
-    background-color: #ae3939;
+    background-color: #1a77ba;
 
     padding: 10px;
     border: 3px solid rgba(22, 20, 20, 0.5);
@@ -37,4 +37,18 @@ body{
     margin-bottom: 10px;
     border-radius: 5px;
 
+}
+
+.btn{
+    background-color: rgb(242, 51, 51);
+    color: white;
+    font-weight: 600;
+    margin: 5px;
+    border: 2px solid rgba(0, 0, 0, 0.501);
+}
+
+#email_alert{
+    color: red;
+    display: none;
+    
 }
