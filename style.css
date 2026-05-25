@@ -36,6 +36,7 @@ body{
     height: 25px;
     margin-bottom: 10px;
     border-radius: 5px;
+    text-decoration: none;
 
 }
 
@@ -50,5 +51,5 @@ body{
 #email_alert{
     color: red;
     display: none;
-    
+
 }

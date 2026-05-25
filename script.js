@@ -16,6 +16,14 @@ form.addEventListener("submit" , function(x){
                 console.log(val.value);
             }
         }
+        else if(val.type == "number"){
+            if(val.value < 0 || val.value >100){
+                console.log("invalid age");
+            }
+            else{
+                console.log("Age : " + val.value);
+            }
+        }
         else if(val.type != "submit"){
             console.log(val.value);
         }
