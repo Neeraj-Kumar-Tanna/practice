@@ -16,33 +16,25 @@ body{
     overflow: hidden;
 }
 
-li{
-    font-size: 50px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: 550;
-}
 
-ul{
-    padding: 30px;
-    padding-left: 50px;
-    border: 3px solid #777;
+#sign-in{
+    height: auto;
+    width: 300px;
+    background-color: #ae3939;
+
+    padding: 10px;
+    border: 3px solid rgba(22, 20, 20, 0.5);
     border-radius: 10px;
-    background-color: rgb(97, 212, 216);
-
 }
 
-.line{
-    text-decoration: line-through;
-    text-decoration-color: red ;
+#form_details{
+    display: flex;
+    flex-direction: column;
 }
 
-
-#circle{
-    height: 100px;
-    width: 100px;
-    margin: 20px;
-    border-radius: 10px;
-    background-color: blueviolet;
+#form_details input{
+    height: 25px;
+    margin-bottom: 10px;
+    border-radius: 5px;
 
 }
-
