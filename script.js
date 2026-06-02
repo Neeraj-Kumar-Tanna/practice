@@ -15,7 +15,6 @@ let x = setInterval(function(){
 } , 10000 / 100);
 
 
-
 let reset = document.querySelector("#reset");
 
 reset.addEventListener("click" , function(){
@@ -33,3 +32,4 @@ reset.addEventListener("click" , function(){
     }
     } , 10000 / 100);
 });
+
