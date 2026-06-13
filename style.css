@@ -94,3 +94,20 @@ body {
 .card.hidden {
     display: none;
 }
+
+#newItem{
+    padding: 20px;
+    border-radius: 5px;
+
+    background-color: #333;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+
+}
+
+#newItem input{
+    display: inline;
+    padding: 3px;
+}
