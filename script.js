@@ -1,12 +1,37 @@
-function outer(att){
-    let x = "hiii broo  i am outside";
+function outer(){
+    let x = 0;
     
-    return function inner(ATT){
-        
-        console.log(att);
-        console.log(ATT);
+    return {
+        inner(){
+            if(x <= 5){
+                x++;
+                console.log(x);
+            }
+            else{
+                console.log("limit  exceeded.....");
+            }
+        },
+
+        reset(){
+            x = 0 ;
+            console.log("reseted.......");
+        }
+
+
     }
 }
 
-let y = outer("i am neeraj kumar tanna");
-y("this is inner function broo");
+let a = outer();
+a.inner();
+a.inner();
+a.inner();
+a.inner();
+a.inner();
+a.inner();
+a.inner();
+a.inner();
+a.reset();
+a.inner();
+a.inner();
+a.inner();
+
