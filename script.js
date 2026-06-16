@@ -1,12 +1,12 @@
-function outer(){
+function outer(att){
     let x = "hiii broo  i am outside";
     
-    return function inner(){
-        y = "i am inside";
-        console.log(x);
-        console.log(y);
+    return function inner(ATT){
+        
+        console.log(att);
+        console.log(ATT);
     }
 }
 
-let y = outer();
-y();
+let y = outer("i am neeraj kumar tanna");
+y("this is inner function broo");
