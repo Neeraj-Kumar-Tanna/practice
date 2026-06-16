@@ -1,25 +1,23 @@
 
-function like(){
-    let likes = 0 ;
-    return function liked(){
-        likes++;
-        console.log(likes);
+
+function login(){
+    let password;
+    return {
+        create(att){
+            password = att;
+            console.log("passwoed set");
+        },
+        check(att){
+            if(password === att){
+                console.log("correct password");
+            }
+            else{
+                console.log("wrong password");
+            }
+        }
     }
 }
 
-let post1 = like();
-let post2 = like();
-let cls = document.querySelectorAll(".likes");
-
-cls.forEach((x)=>{
-    x.addEventListener("click" , function(){
-        let num = x.getAttribute("id");
-        if(num === "post1"){
-            post1();
-        }
-        else{
-            post2();
-        }
-        console.log("clicked");
-    });
-});
+let person1 = login();
+person1.create("neeraj123");
+person1.check("neeraj1234");
