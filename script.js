@@ -1,37 +1,25 @@
-function outer(){
-    let x = 0;
-    
-    return {
-        inner(){
-            if(x <= 5){
-                x++;
-                console.log(x);
-            }
-            else{
-                console.log("limit  exceeded.....");
-            }
-        },
 
-        reset(){
-            x = 0 ;
-            console.log("reseted.......");
-        }
-
-
+function like(){
+    let likes = 0 ;
+    return function liked(){
+        likes++;
+        console.log(likes);
     }
 }
 
-let a = outer();
-a.inner();
-a.inner();
-a.inner();
-a.inner();
-a.inner();
-a.inner();
-a.inner();
-a.inner();
-a.reset();
-a.inner();
-a.inner();
-a.inner();
+let post1 = like();
+let post2 = like();
+let cls = document.querySelectorAll(".likes");
 
+cls.forEach((x)=>{
+    x.addEventListener("click" , function(){
+        let num = x.getAttribute("id");
+        if(num === "post1"){
+            post1();
+        }
+        else{
+            post2();
+        }
+        console.log("clicked");
+    });
+});
