@@ -1,6 +1,7 @@
 let userName = document.querySelector("#name");
 let role = document.querySelector("#role");
 let discription = document.querySelector("#discription");
+let profile = document.querySelector("#profiles");
 
 let form = document.querySelector("form"); // Select the form, not the button
 
@@ -26,6 +27,8 @@ let obj ={
         
         let card = document.createElement("div");
         card.classList.add("card");
+        // Store the user index in the card
+        card.setAttribute("data-index", this.users.length - 1);
         document.querySelector("#profiles").appendChild(card);
 
         let h2 = document.createElement("h2");
@@ -41,12 +44,40 @@ let obj ={
         card.appendChild(p); 
 
         let btn = document.createElement("button");
+        btn.innerText = "delete";
         btn.classList.add("delete");
         card.appendChild(btn);
         
+        // btn.addEventListener("click" , ()=>{
+        //     let index = card.getAttribute("data-index");
+        //     this.users.splice(index , 1);
 
+        //     this.removeUser(card);
+
+        // })
+        
+        
     },
-    removeUser(){}
+    removeUser(){
+        // let deleteBtn = document.querySelectorAll(".delete");
+        // deleteBtn.forEach((x) => {
+        //     x.addEventListener("click" , ()=>{
+        //         let index = x.parentElement.getAttribute("data-index");
+        //         x.parentElement.remove();
+        //     })
+        // });
+
+        profile.addEventListener("click" , (e)=>{
+            let tar = e.target;
+            if(tar.classList.contains("delete")){
+                tar.parentElement.remove();
+            }
+            
+        });
+
+        
+    }
 }
 
 obj.createUser(); // Initialize the event listener
+obj.removeUser();
