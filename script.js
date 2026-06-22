@@ -1,52 +1,65 @@
-class BankAccount{
-    #balance;
-    constructor(name , balance){
-        this.name = name;
-        
-        this.accNum = BankAccount.generateAccount();
-        this.#balance = balance;
+class Employee{
+    constructor(name , experience){
+        this.name = name; 
+        this.experience =  experience;
     }
 
-    static #accountNum = 10000;
-    static generateAccount(){
-        return this.#accountNum++;
+    AboutEmployee(){
+        console.log(`details : Name - ${this.name} ,\n experience- ${this.experience}`);
     }
 
-    checkAccNum(){
-        console.log("acc num is : " + this.accNum);
-    }
-
-    checkBalance(){
-        console.log("Balance is : " + this.#balance);
-    }
-
-    deposit(amount){
-        this.#balance += amount;
-        console.log("deposited");
-    }
-
-    withdraw(amount){
-        if(this.#balance >= amount) {
-            this.#balance -= amount;
-            console.log("amount withdrawn");
-        }
-        else{
-            console.log("insufficient balance");
-        }
+    clacSalary(){
+        throw new Error("this must be implemented by child class");
     }
 }
 
-let acc1 = new BankAccount("neeraj" , 500);
-acc1.checkAccNum();
-acc1.checkBalance();
-acc1.deposit(5000);
-acc1.checkBalance();
-acc1.withdraw(2000);
-acc1.checkBalance();
-// console.log(acc1.#balance);
+class Manager extends Employee{
+    constructor(name , experience){
+        super(name , experience);
+    }
 
-let acc2 = new BankAccount("nandu" , 300);
-acc2.checkAccNum();
+    role= "Manager";
+    salary = (this.experience/30)*300000;
+    
+    calcSalary(){
+        console.log(`salary of ${this.name} is $${Math.floor(this.salary)}`);
+    }
+}
 
-let acc3 = new BankAccount("nanann" , 400);
-acc3.checkAccNum();
+class Developer extends Employee{
+    constructor(name , experience){
+        super(name , experience);
+    }
+
+    role = "Developer";
+    salary = (this.experience/30)*200000;
+
+    calcSalary(){
+        console.log(`salary of ${this.name} is $${Math.floor(this.salary)}`);
+    }
+}
+
+class Tester extends Employee{
+    constructor(name ,  experience){
+        super(name ,experience);
+    }
+
+    role = "Tester";
+    salary = (this.experience/30)*100000;
+
+    calcSalary(){
+        console.log(`salary of ${this.name} is $${Math.floor(this.salary)}`);
+    }
+}
+
+let m1 = new Manager("neeraj m" , 15);
+m1.AboutEmployee();
+m1.calcSalary();
+
+let d1 = new Developer("nandu" , 9);
+d1.AboutEmployee();
+d1.calcSalary();
+
+let t1 = new Tester("vaish" , 13);
+t1.AboutEmployee();
+t1.calcSalary();
