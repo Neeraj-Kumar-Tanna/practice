@@ -1,65 +1,59 @@
-class Employee{
-    constructor(name , experience){
-        this.name = name; 
-        this.experience =  experience;
+class Product{
+    constructor(name , cost){
+        this.name = name;
+        this.cost = cost;
     }
 
-    AboutEmployee(){
-        console.log(`details : Name - ${this.name} ,\n experience- ${this.experience}`);
+    productInfo(){
+        console.log(`name : ${this.name} , cost : ${this.cost}`);
     }
 
-    clacSalary(){
-        throw new Error("this must be implemented by child class");
-    }
-}
-
-class Manager extends Employee{
-    constructor(name , experience){
-        super(name , experience);
-    }
-
-    role= "Manager";
-    salary = (this.experience/30)*300000;
-    
-    calcSalary(){
-        console.log(`salary of ${this.name} is $${Math.floor(this.salary)}`);
+    getCost(){
+        return this.cost;
     }
 }
 
-class Developer extends Employee{
-    constructor(name , experience){
-        super(name , experience);
+class Cart{
+    products = [];
+
+    addProduct(prod){
+        this.products.push(prod);
+        console.log("added : " + prod.name);
     }
 
-    role = "Developer";
-    salary = (this.experience/30)*200000;
-
-    calcSalary(){
-        console.log(`salary of ${this.name} is $${Math.floor(this.salary)}`);
+    removeProduct(prod){
+        for(let i = 0 ; i < this.products.length ;i++){
+            if(this.products[i].name === prod){
+                this.products.splice(i,1);
+                break;
+            }
+        }
     }
+
+    totalCost(){
+        let total = 0;
+        for(let i = 0; i<this.products.length ; i++){
+            total += this.products[i].getCost();
+        }
+        console.log(total);
+    }
+
 }
 
-class Tester extends Employee{
-    constructor(name ,  experience){
-        super(name ,experience);
-    }
+let p1 = new Product("pen" , 10);
+let p2 = new Product("pencil" , 5);
+let p3 = new Product("bottle" , 50);
 
-    role = "Tester";
-    salary = (this.experience/30)*100000;
+p1.productInfo();
 
-    calcSalary(){
-        console.log(`salary of ${this.name} is $${Math.floor(this.salary)}`);
-    }
-}
+let cart1 = new Cart();
+cart1.addProduct(p1);
+cart1.addProduct(p2);
+cart1.addProduct(p3);
 
-let m1 = new Manager("neeraj m" , 15);
-m1.AboutEmployee();
-m1.calcSalary();
+cart1.totalCost();
 
-let d1 = new Developer("nandu" , 9);
-d1.AboutEmployee();
-d1.calcSalary();
+cart1.removeProduct("bottle");
+cart1.totalCost();
 
-let t1 = new Tester("vaish" , 13);
-t1.AboutEmployee();
-t1.calcSalary();
+
