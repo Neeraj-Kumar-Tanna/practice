@@ -1,59 +1,47 @@
-class Product{
-    constructor(name , cost){
-        this.name = name;
-        this.cost = cost;
-    }
+fetch("https://randomuser.me/api/?results=100")
+.then(function(raw){
+    return raw.json();
+})
+.then(function(data){
+    data.results.forEach((ele) => {
 
-    productInfo(){
-        console.log(`name : ${this.name} , cost : ${this.cost}`);
-    }
+        console.log(ele)
+        
+        
+        const card = document.createElement("div");
+        card.className = "card";
 
-    getCost(){
-        return this.cost;
-    }
-}
+        // Create image
+        const img = document.createElement("img");
+        img.src = ele.picture.large;
+         img.alt = "Profile Picture";
+         img.className = "profile-pic";
 
-class Cart{
-    products = [];
+        const name = document.createElement("h3");
+        name.innerText = `${ele.name.first} ${ele.name.last}`;
+        
 
-    addProduct(prod){
-        this.products.push(prod);
-        console.log("added : " + prod.name);
-    }
+// Create info div
+const info = document.createElement("div");
+info.className = "info";
 
-    removeProduct(prod){
-        for(let i = 0 ; i < this.products.length ;i++){
-            if(this.products[i].name === prod){
-                this.products.splice(i,1);
-                break;
-            }
-        }
-    }
+// Create email
+const email = document.createElement("p");
+email.innerHTML = `<strong>Email:</strong> ${ele.email}`;
 
-    totalCost(){
-        let total = 0;
-        for(let i = 0; i<this.products.length ; i++){
-            total += this.products[i].getCost();
-        }
-        console.log(total);
-    }
+// Create gender
+const gender = document.createElement("p");
+gender.innerHTML = `<strong>Gender:</strong> ${ele.gender}`;
 
-}
+// Append elements
+info.append(email, gender);
+card.append(img,name ,info);
 
-let p1 = new Product("pen" , 10);
-let p2 = new Product("pencil" , 5);
-let p3 = new Product("bottle" , 50);
-
-p1.productInfo();
-
-let cart1 = new Cart();
-cart1.addProduct(p1);
-cart1.addProduct(p2);
-cart1.addProduct(p3);
-
-cart1.totalCost();
-
-cart1.removeProduct("bottle");
-cart1.totalCost();
-
+// Add card to page
+document.body.appendChild(card);
+    });
+})
+.catch(function(error){
+    console.log(error);
+});
 
