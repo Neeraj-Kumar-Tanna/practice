@@ -1,21 +1,31 @@
-let bank = (function(){
-    let balance = 2000;
 
-    function checkBalance(){
-        console.log(balance);
+let search = () =>{
+    let value = inp.value;
+    names.forEach((x)=>{
+        console.log(x.getAttribute("data-name"));
+        if(!x.getAttribute("data-name").startsWith(value)){
+            x.classList.add("hidden");
+        }
+        else{
+            x.classList.remove("hidden");
+        }
+        // if(value !== x.innerText){
+        //     x.classList.add("hidden");
+        // }
+    });
+}
+
+function db(func , delay){
+    let timer;
+    return function(...x){
+        clearTimeout(timer);
+        timer = setTimeout(() =>{
+            func();
+        }, delay);
     }
+}
 
-    function setBalance(val){
-        balance = val;
-        console.log(balance + "setted");
-    }
+let db_search = db(search , 2000);
 
-    return {
-        checkBalance,
-        setBalance
-    };
-})();
-
-bank.checkBalance();
-bank.setBalance(30000);
-bank.checkBalance();
+// inp.addEventListener("input" , db(search , 3000));
+inp.addEventListener("input" , db_search);
