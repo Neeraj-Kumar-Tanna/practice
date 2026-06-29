@@ -1,60 +1,68 @@
-let inp = document.querySelector("#searchInput");
-let names = document.querySelectorAll(".card");
-
-let search = () =>{
-    let value = inp.value;
-    names.forEach((x)=>{
-        console.log(x.getAttribute("data-name"));
-        if(!x.getAttribute("data-name").startsWith(value)){
-            x.classList.add("hidden");
-        }
-        else{
-            x.classList.remove("hidden");
-        }
-        // if(value !== x.innerText){
-        //     x.classList.add("hidden");
+fetch("https://randomuser.me/api/?results=500")
+    .then((rawData) => {
+        return rawData.json();
+    })
+    .then(
+        // (data)=>{
+        //     console.log(data.results);
         // }
-    });
-}
 
-function db(func , delay){
-    let timer;
-    return function(...x){
+        (data) => {
+            data.results.forEach((ele) => {
+                const card = document.createElement("div");
+                card.classList.add("profile-container");
+
+                const img = document.createElement("img");
+                img.classList.add("profile-pic");
+                img.src = ele.picture.large;
+
+                const h2 = document.createElement("h2");
+                h2.classList.add("name");
+                h2.innerText = `${ele.name.first} ${ele.name.last}`;
+
+                const p = document.createElement("p");
+                p.innerText = ele.email;
+
+                card.appendChild(img);
+                card.appendChild(h2);
+                card.appendChild(p);
+                document.querySelector("#container").appendChild(card);
+
+            })
+        }
+    )
+    .catch((err) => {
+        console.log(err);
+    })
+
+let inp = document.querySelector("#search");
+
+function debounce(func, delay) {
+    let timer = 10000;
+    return function (...args) {
         clearTimeout(timer);
-        timer = setTimeout(() =>{
+        timer = setTimeout(() => {
             func();
+            console.log("alive..");
         }, delay);
     }
 }
 
-let db_search = db(search , 2000);
-
-// inp.addEventListener("input" , db(search , 3000));
-inp.addEventListener("input" , db_search);
-
-let btn = document.querySelector("button");
-btn.addEventListener("click" , function(){
-    let div = document.createElement("div");
-    div.classList.add("card");
-    div.setAttribute("data-name" , document.querySelector("#name").value);
-    document.querySelector(".cards-container").appendChild(div);
-    
-    let image = document.createElement("img");
-    image.classList.add("card-image");
-    image.setAttribute("src" , document.querySelector("#image_url").value);
-    div.appendChild(image);
-    
-    let name = document.createElement("h3");
-    name.classList.add("card-title");
-    name.innerText = document.querySelector("#name").value;
-    div.appendChild(name);
-    
-    let disc = document.createElement("p");
-    disc.classList.add("card-description");
-    disc.innerText = document.querySelector("#description").value;
-    div.appendChild(disc);
-    
-    console.log("clicked...");
+let search = () => {
+    let val = inp.value.toLowerCase();
+    // console.log(inp);
+    // console.log(val.length);
+    let names = document.querySelectorAll(".name");
+    names.forEach((x) => {
+        if (!x.innerText.toLowerCase().startsWith(val)) {
+            x.parentElement.classList.add("hidden");
+        }
+        else {
+            x.parentElement.classList.remove("hidden");
+        }
+    }
+    );
+}
 
 
-});
+inp.addEventListener("input", debounce(search, 1000));
