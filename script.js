@@ -38,12 +38,20 @@ fetch("https://randomuser.me/api/?results=500")
 let inp = document.querySelector("#search");
 
 function debounce(func, delay) {
+<<<<<<< HEAD
     let timer;
+=======
+    let timer = 10000;
+>>>>>>> refs/remotes/origin/main
     return function (...args) {
         clearTimeout(timer);
         timer = setTimeout(() => {
             func();
+<<<<<<< HEAD
             console.log("alive...");
+=======
+            console.log("alive..");
+>>>>>>> refs/remotes/origin/main
         }, delay);
     }
 }
@@ -65,6 +73,7 @@ let search = () => {
 }
 
 
+<<<<<<< HEAD
 // inp.addEventListener("input", debounce(search, 1000));
 function trottle(func, interval) {
     let timer = 0;
@@ -80,3 +89,6 @@ function trottle(func, interval) {
 }
 
 inp.addEventListener("input", trottle(search, 1000));
+=======
+inp.addEventListener("input", debounce(search, 1000));
+>>>>>>> refs/remotes/origin/main
