@@ -43,7 +43,7 @@ function debounce(func, delay) {
         clearTimeout(timer);
         timer = setTimeout(() => {
             func();
-            console.log("alive..");
+            console.log("alive...");
         }, delay);
     }
 }
@@ -65,4 +65,18 @@ let search = () => {
 }
 
 
-inp.addEventListener("input", debounce(search, 1000));
+// inp.addEventListener("input", debounce(search, 1000));
+function trottle(func, interval) {
+    let timer = 0;
+    return function (...args) {
+        let now = Date.now();
+        if (now - timer >= interval) {
+            timer = now;
+            console.log("running interval at : " + now);
+            func();
+        }
+
+    }
+}
+
+inp.addEventListener("input", trottle(search, 1000));
