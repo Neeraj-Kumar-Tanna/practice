@@ -7,14 +7,15 @@ fetch("https://randomuser.me/api/?results=500")
         //     console.log(data.results);
         // }
 
-        (data) => {
+        async (data) => {
             data.results.forEach((ele) => {
                 const card = document.createElement("div");
                 card.classList.add("profile-container");
 
                 const img = document.createElement("img");
                 img.classList.add("profile-pic");
-                img.src = ele.picture.large;
+                img.setAttribute("data-src", ele.picture.large);
+                img.setAttribute("alt", "not loaded yet");
 
                 const h2 = document.createElement("h2");
                 h2.classList.add("name");
@@ -28,12 +29,50 @@ fetch("https://randomuser.me/api/?results=500")
                 card.appendChild(p);
                 document.querySelector("#container").appendChild(card);
 
-            })
+                observer.observe(img);
+            });
         }
     )
     .catch((err) => {
         console.log(err);
     })
+
+// ---------------------------------------------------
+
+let observer = new IntersectionObserver((entites) => {
+    entites.forEach((entity) => {
+        if (entity.isIntersecting) {
+            let t = entity.target;
+            
+            t.src = t.dataset.src;
+            t.addEventListener("load" , ()=>{
+                t.classList.add("loaded");
+            })
+            observer.unobserve(t);
+            console.log("executed");
+        }
+    })
+},
+    {
+        root: null,
+        rootMargin:"0px 0px -40% 0px",
+        threshold: 1,
+    });
+
+
+// let img = document.querySelectorAll(".profile-pic");
+// img.forEach((i)=>{
+//     observer.observe(i);
+// });
+
+
+console.log("hii");
+
+
+
+
+
+//    ------------------------------------------------------------------------------ 
 
 let inp = document.querySelector("#search");
 
@@ -66,3 +105,9 @@ let search = () => {
 
 
 inp.addEventListener("input", debounce(search, 1000));
+
+
+
+
+
+// ----------------------------------------------------------------------------------

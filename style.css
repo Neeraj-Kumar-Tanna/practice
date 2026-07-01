@@ -43,6 +43,11 @@ body{
     border-radius: 12px;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    /* opacity: 0; */
+}
+
+.loaded{
+    opacity: 1;
 }
 
 .profile-pic{
@@ -51,6 +56,7 @@ body{
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 15px;
+    /* opacity: 0; */
 }
 
 .profile-container h2{
