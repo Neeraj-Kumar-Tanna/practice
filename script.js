@@ -26,3 +26,4 @@ let observer = new IntersectionObserver((entities) => {
 
 images.forEach((img) => {
     observer.observe(img);
+});
