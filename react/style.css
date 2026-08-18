@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.divhead{
+    width: 100%;
+    font-size: 17px;
+    padding: 2vw 6vw;
+
+    display: flex;
+    flex-direction: row;
+    align-items: space-between;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.divLeft{
+    color: rgba(0, 0, 0, 0.69);
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+}
