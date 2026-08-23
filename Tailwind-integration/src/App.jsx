@@ -145,7 +145,7 @@ const App = () => {
     <div className='h-full w-100vw bg-amber-200 px-10 py-5 flex flex-row flex-wrap justify-center align-middle gap-10'>
       {
         users.map(function(params){
-          return <Card photo={params.photo} username ={params.username}  />
+          return <Card photo={params.photo} username ={params.username} name={params.fullName} discription={params.description}/>
         })
       }
     </div>
