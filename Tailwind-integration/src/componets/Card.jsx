@@ -12,7 +12,7 @@ const Card = (props) => {
         <UserName username = {props.username} />
         <Name name={props.name}/>
         <Discription disc={props.discription} />
-        <Counts />
+        <Counts  likes={props.likes} followers={props.followers} following={props.following}/>
     </div>
   )
 }
